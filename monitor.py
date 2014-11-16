@@ -16,7 +16,7 @@ import re
 print "[*] Launching count monitor at 5 second intervals..."
 while 1:
     print "[*] Polling... Waiting for connection into SSH encrypted tunnel..."
-    proc = subprocess.Popen("netstat -antp | grep 8021", stdout=subprocess.PIPE, shell=True)
+    proc = subprocess.Popen("netstat -antp | grep \":8021\s\"", stdout=subprocess.PIPE, shell=True)
     stdout = proc.communicate()[0]
     if "8021" in stdout:
 		print "[*] Encrypted tunnel identified. Yipee, we gots a shell!"
