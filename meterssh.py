@@ -88,7 +88,7 @@ def reverse_forward_tunnel(server_port, remote_host, remote_port, transport):
 
 # main class here
 def main(user,password, rhost, port):
-  server = [rhost, int(port)]  # our ssh server 
+         server = [rhost, int(port)]  # our ssh server 
          remote = ['127.0.0.1', int(8021)] # what we want to tunnel
          client = paramiko.SSHClient() # use the paramiko SSHClient
          client.load_system_host_keys() # load SSH keys
