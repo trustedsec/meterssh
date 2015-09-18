@@ -3,3 +3,19 @@ version 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * initial release of meterssh
+
+~~~~~~~~~~~~~~~~~~~~~~~
+version 2.0
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Replaced reverse forward with regular port forward and reverse_tcp payload. This change removes the need for any special handler on the attacker's side.
+
+* Added much more resilient error checking.
+
+* Added ability to specify ip and port from command line.
+
+* Added support of RSA, DSA (DSS), ECDSA key authentication instead of passwords.
+
+* Removed subprocess, multiprocess, and threading libraries and rewrote corresponding code to use only _thread. Code is much simplified and should be more compatible with py2exe.
+
+* Upgrade to Python 3.4
