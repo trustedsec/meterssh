@@ -4,6 +4,26 @@ from io import StringIO
 import socketserver as SocketServer  
 import sys, os, paramiko, time, ctypes, _thread, select
 
+
+#####################################################################################
+#
+#                    MeterSSH
+#           Tunneling Shellcode over SSH
+#
+#   Written by: David Kennedy (ReL1K)
+#   Website: https://www.trustedsec.com
+#   Twitter: @TrustedSec @HackingDave
+#
+# Simple add your username, password, remote IP, and remote port
+# for your SSH server and watch the magic.
+#
+# Note that you can easily make this into a binary with pyinstaller or py2exe
+#
+# Special thanks for version 2 from shellster
+#
+#####################################################################################
+
+
 listener_setup = False
 
 # define our shellcode injection code through ctypes
