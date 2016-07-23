@@ -48,7 +48,7 @@ Note that you DO NOT need to change the Metasploit shellcode, the Metasploit she
 ### License
 
 
-Copyright 2014, MeterSSH by TrustedSec, LLC
+Copyright 2016, MeterSSH by TrustedSec, LLC
 All rights reserved. 
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
